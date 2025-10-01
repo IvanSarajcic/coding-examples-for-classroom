@@ -3,8 +3,16 @@
 using std::string;
 using std::pair;
 
-// You must define or pass 'dani' to this function. Here, we assume it's passed as a parameter.
-pair<string, double> KoImaNajveci(const auto& dani) {
+// Pretpostavimo da postoji klasa Dan sa metodom Prosek()
+class Dan {
+public:
+	double Prosek() const {
+		// Primer implementacije
+		return 0.0;
+	}
+};
+template<typename T>
+pair<string, double> KoImaNajveci(const T& dani) {
 	string dani_nedelje[] = {"Ned", "Sub", "Pet", "Cet", "Sre", "Uto", "Pon"};
 	double najveci = 0.0;
 	int sa_najvecim = -1;
