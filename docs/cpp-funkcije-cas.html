@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Priprema časa: Funkcije u C++</title>
+  <style>
+    body{font-family:Arial, Helvetica, sans-serif;line-height:1.45;padding:20px;color:#111}
+    h1,h2{color:#0b63a5}
+    table{border-collapse:collapse;width:100%;margin-bottom:20px}
+    th,td{border:1px solid #ccc;padding:10px;text-align:left;vertical-align:top}
+    th{background:#f2f7fb;width:220px}
+    pre{background:#f8f8f8;border:1px solid #e2e2e2;padding:10px;overflow:auto}
+    .code{font-family:monospace;font-size:0.95em}
+    .section{margin-bottom:18px}
+  </style>
+</head>
+<body>
+  <h1>ПРИПРЕМА ЗА ЧАС — C++: Функције</h1>
+  <table>
+    <tr><th>Предмет</th><td>Програмски језик C++</td></tr>
+    <tr><th>Разред</th><td>II (или III по потреби)</td></tr>
+    <tr><th>Тема часа</th><td>Функције у C++ програму — употреба, позив и повратна вредност</td></tr>
+    <tr><th>Тип часа</th><td>Обрада новог градива уз увежбавање</td></tr>
+    <tr><th>Наставна средства</th><td>Рачунар, пројектор, компајлер (Dev-C++, Code::Blocks, VS Code или слично)</td></tr>
+    <tr><th>Облик рада</th><td>Фронтални и индивидуални рад</td></tr>
+  </table>
+
+  <div class="section">
+    <h2>Циљеви и исходи учења</h2>
+    <ul>
+      <li>Објаснити улогу функције <code>main()</code>.</li>
+      <li>Препознати и дефинисати сопствену функцију.</li>
+      <li>Позвати функцију из <code>main()</code>.</li>
+      <li>Користити <code>for</code> и <code>if</code> унутар функције.</li>
+      <li>Применити функције за једноставне задатке.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Мотивација (5 мин)</h2>
+    <p>Поставити питање: „Шта ако се део кода понавља? Можемо ли то избећи?“ Увести појам функције као "мини-програма" који решава један задатак и може се позивати више пута.</p>
+  </div>
+
+  <div class="section">
+    <h2>Понављање: шта је <code>main()</code>?</h2>
+    <p>Функција <code>main()</code> је почетна тачка извршавања програма — рачунар увек прво покреће код унутар <code>main()</code>.</p>
+    <table>
+      <tr><th>Кључна значења</th><td>
+        <ul>
+          <li><code>int main()</code> — враћа целобројну вредност (обично 0 као успех)</li>
+          <li><code>return 0;</code> — означава успешан завршетак програма</li>
+          <li>Тело функције између <code>{ }</code> садржи наредбе које се извршавају</li>
+        </ul>
+      </td></tr>
+    </table>
+
+    <p><strong>Аналогија:</strong> <em><code>main()</code> је као главна соба у кући — из ње улазимо у друге просторије (функције).</em></p>
+
+    <pre class="code">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Zdravo svete!" &lt;&lt; endl;
+    return 0;
+}
+</pre>
+  </div>
+
+  <div class="section">
+    <h2>Зашто користимо функције</h2>
+    <ol>
+      <li>Подела програма на мање логичке целине</li>
+      <li>Поновна употреба кода</li>
+      <li>Јасноћа и прегледност</li>
+      <li>Лакше одржавање</li>
+    </ol>
+
+    <p><strong>Пример:</strong> уместо да често пишемо <code>if (broj % 2 == 0)</code>, дефинишемо:</p>
+    <pre class="code">bool jeParan(int broj) {
+    return broj % 2 == 0;
+}</pre>
+
+    <p>и користимо је на више места:</p>
+    <pre class="code">if (jeParan(a)) ...
+if (jeParan(b)) ...
+if (jeParan(c)) ...</pre>
+  </div>
+
+  <div class="section">
+    <h2>Излагање новог градива (пример)</h2>
+    <p>Синтакса функције:</p>
+    <pre class="code">tip_vracene_vrednosti ime_funkcije(parametri) {
+    // telo funkcije
+}</pre>
+
+    <p>Пример целог програма:</p>
+    <pre class="code">#include &lt;iostream&gt;
+using namespace std;
+
+bool jeParan(int broj) {
+    if (broj % 2 == 0)
+        return true;
+    else
+        return false;
+}
+
+int main() {
+    for (int i = 1; i <= 10; i++) {
+        if (jeParan(i))
+            cout &lt;&lt; i &lt;&lt; " je paran broj." &lt;&lt; endl;
+        else
+            cout &lt;&lt; i &lt;&lt; " je neparan broj." &lt;&lt; endl;
+    }
+    return 0;
+}
+</pre>
+  </div>
+
+  <div class="section">
+    <h2>Увежбавање (15–20 мин)</h2>
+    <h3>Задатак 1</h3>
+    <p>Напиши функцију <code>bool deljivSaTri(int broj)</code> која враћа <code>true</code> ако је број дељив са 3. У <code>main()</code> испиши бројеве од 1 до 20 и означи који су дељиви са 3.</p>
+
+    <h3>Задатак 2 (напредније)</h3>
+    <p>Напиши функцију <code>int zbirParnih(int n)</code> која враћа збир свих парних бројева од 1 до <code>n</code>. У <code>main()</code> учитати <code>n</code> и приказати резултат.</p>
+  </div>
+
+  <div class="section">
+    <h2>Домаћи задатак</h2>
+    <p>Напиши функцију која прима два броја и враћа већи. У <code>main()</code> тражи од корисника да унесе пет парова бројева и за сваки испиши који је већи.</p>
+  </div>
+
+  <div class="section">
+    <h2>Закључак (5 мин)</h2>
+    <ul>
+      <li><code>main()</code> је почетак програма</li>
+      <li>Функције деле програм на мање целине</li>
+      <li>Функције могу имати параметре и вратити вредност</li>
+      <li><code>for</code> и <code>if</code> се могу користити унутар функције</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p style="font-size:0.9em;color:#555">Направљено као припрема часа — слободно прилагоди минуте и ниво задатака према одељењу.</p>
+  </footer>
+</body>
+</html>
